@@ -399,29 +399,6 @@
     .ap-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text-primary); margin-bottom: 14px; position: relative; z-index: 1; }
     .ap-text { font-size: .98rem; color: var(--text-secondary); line-height: 1.75; font-weight: 300; position: relative; z-index: 1; }
 
-    .track-item {
-      padding: 38px 24px; margin: 0 -24px; border-bottom: 1px solid var(--border);
-      border-radius: 0 24px 24px 0;
-      transition: padding-left .45s cubic-bezier(.16,1,.3,1), background .45s, border-radius .45s;
-      cursor: none;
-    }
-    .track-item:first-child { border-top: 1px solid var(--border); }
-    .track-item:hover { padding-left: 36px; background: rgba(255,255,255,0.025); border-radius: 4px 28px 28px 4px; }
-    .track-head { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start; margin-bottom: 14px; }
-    .track-org { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.4rem,2.6vw,1.9rem); color: var(--text-primary); margin-bottom: 6px; }
-    .track-role { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); font-family: 'Outfit', sans-serif; }
-    .track-scale { text-align: right; }
-    .track-big { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--text-primary); line-height: 1; margin-bottom: 6px; }
-    .track-sub { font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
-    .track-fact { font-size: .95rem; color: var(--text-secondary); line-height: 1.7; font-weight: 300; max-width: 640px; margin-bottom: 14px; }
-    .track-more {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
-      color: var(--text-muted); font-family: 'Outfit', sans-serif;
-      border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
-    }
-    .track-item:hover .track-more { color: var(--gold); border-color: var(--gold); }
-
     #contributions { background: var(--bg-warm); }
     .proj-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
     @media (max-width: 900px) { .proj-grid { grid-template-columns: 1fr 1fr; } }
@@ -530,6 +507,54 @@
     }
     .soon-close:hover { color: var(--gold); }
 
+    /* ---- Where I've Worked: collapsible + card grid ---- */
+    .exp-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; width: 100%; text-align: left;
+      background: transparent; border: none; cursor: none;
+      padding: 26px 30px; margin-top: 8px;
+    }
+    .exp-toggle-left { display: flex; align-items: center; gap: 16px; }
+    .exp-toggle-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-primary); letter-spacing: -0.01em; }
+    .exp-toggle-count { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); font-family: 'Outfit', sans-serif; }
+    .exp-toggle-icon {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(16, 185, 129, 0.3); background: var(--gold-dim); color: var(--gold);
+      font-size: 1rem; transition: transform .45s cubic-bezier(.16,1,.3,1), background .3s;
+    }
+    .exp-panel[data-open="true"] .exp-toggle-icon { transform: rotate(45deg); background: rgba(16,185,129,.22); }
+    .exp-panel[data-open="true"] .exp-toggle { padding-bottom: 22px; }
+
+    .exp-body {
+      display: grid; grid-template-rows: 0fr; opacity: 0;
+      transition: grid-template-rows .55s cubic-bezier(.16,1,.3,1), opacity .45s ease;
+    }
+    .exp-panel[data-open="true"] .exp-body { grid-template-rows: 1fr; opacity: 1; }
+    .exp-body-inner { overflow: hidden; }
+    .exp-cards {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 18px;
+      padding: 6px 30px 34px;
+    }
+    @media (max-width: 900px) { .exp-cards { grid-template-columns: 1fr; } }
+
+    .exp-card {
+      padding: 30px 28px; cursor: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .exp-card:hover { transform: translateY(-5px) scale(1.008); }
+    .exp-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; position: relative; z-index: 1; }
+    .exp-org { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.25rem; color: var(--text-primary); line-height: 1.15; }
+    .exp-year { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.05rem; color: var(--gold); flex-shrink: 0; white-space: nowrap; }
+    .exp-role { font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); font-family: 'Outfit', sans-serif; position: relative; z-index: 1; }
+    .exp-meta { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; position: relative; z-index: 1; }
+    .exp-more {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
+      font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--text-muted); font-family: 'Outfit', sans-serif; transition: color .2s; position: relative; z-index: 1;
+    }
+    .exp-card:hover .exp-more { color: var(--gold); }
+
     @media (max-width: 900px) {
       .hero-body { grid-template-columns: 1fr; gap: 48px; padding-top: 40px; text-align: center; }
       .hero-right-col { align-items: center; }
@@ -537,8 +562,6 @@
       .hero-stmt { margin-left: auto; margin-right: auto; }
       .svc-grid, .ap-grid, .creds-featured, .cg-wrap, .contact-grid { grid-template-columns: 1fr; }
       .proj-grid { grid-template-columns: 1fr 1fr; }
-      .track-head { grid-template-columns: 1fr; gap: 8px; }
-      .track-scale { text-align: left; }
     }
     @media (max-width: 680px) {
       .nav-links { display: none; }
@@ -547,6 +570,8 @@
       .foot-inner { flex-direction: column; gap: 16px; text-align: center; }
       .hero-stats { grid-template-columns: 1fr; }
       .hero-img-box { width: 220px; }
+      .exp-toggle { padding: 22px 20px; }
+      .exp-cards { padding: 6px 20px 28px; }
     }
   </style>
 </head>
@@ -689,119 +714,105 @@
   <div class="wrap">
     <div class="eyebrow r"><span class="ey-n">03</span><span class="ey-l"></span></div>
     <h2 class="stitle r">Where I've <em>Worked</em></h2>
-    <p class="sdesc r">Eight roles across the last year and a half. Click one, the full story isn't there yet, that's just true right now.</p>
+    <p class="sdesc r">Eight roles across the last year and a half. Expand to see them, click one, the full story isn't there yet, that's just true right now.</p>
 
-    <div>
-      <div class="track-item r d1" data-name="FT Agritech Solutions">
-        <div class="track-head">
+    <div class="exp-panel glass r" data-open="false" id="exp-panel">
+      <button class="exp-toggle" id="exp-toggle" aria-expanded="false" aria-controls="exp-body">
+        <div class="exp-toggle-left">
+          <div class="exp-toggle-icon">+</div>
           <div>
-            <div class="track-org">FT Agritech Solutions</div>
-            <div class="track-role">Chief Executive Officer</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2026</div>
-            <div class="track-sub">Present · 7 mos</div>
+            <div class="exp-toggle-title">Where I've Worked</div>
+            <div class="exp-toggle-count">8 Roles · 2025 — Present</div>
           </div>
         </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
+      </button>
 
-      <div class="track-item r d2" data-name="ethio telecom">
-        <div class="track-head">
-          <div>
-            <div class="track-org">ethio telecom</div>
-            <div class="track-role">Intern</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2025</div>
-            <div class="track-sub">4 mos</div>
+      <div class="exp-body" id="exp-body">
+        <div class="exp-body-inner">
+          <div class="exp-cards">
+
+            <div class="exp-card glass glass-sm" data-name="FT Agritech Solutions">
+              <div class="exp-card-top">
+                <div class="exp-org">FT Agritech Solutions</div>
+                <div class="exp-year">2026</div>
+              </div>
+              <div class="exp-role">Chief Executive Officer</div>
+              <div class="exp-meta">Present · 7 mos</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="ethio telecom">
+              <div class="exp-card-top">
+                <div class="exp-org">ethio telecom</div>
+                <div class="exp-year">2025</div>
+              </div>
+              <div class="exp-role">Intern</div>
+              <div class="exp-meta">4 mos</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="Information Network Security Agency">
+              <div class="exp-card-top">
+                <div class="exp-org">Information Network Security Agency</div>
+                <div class="exp-year">2025</div>
+              </div>
+              <div class="exp-role">4th Round Cyber Talent Participant</div>
+              <div class="exp-meta">3 mos · Addis Ababa</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="Born To Win Club, Mekelle University">
+              <div class="exp-card-top">
+                <div class="exp-org">Born To Win Club</div>
+                <div class="exp-year">2026</div>
+              </div>
+              <div class="exp-role">External Relations and Partnerships Lead</div>
+              <div class="exp-meta">Present · Part-time</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="Orbit Innovation Hub">
+              <div class="exp-card-top">
+                <div class="exp-org">Orbit Innovation Hub</div>
+                <div class="exp-year">2025</div>
+              </div>
+              <div class="exp-role">Cohort 6 Graduate</div>
+              <div class="exp-meta">4 mos · Axum</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="Addis Ababa Science and Technology University">
+              <div class="exp-card-top">
+                <div class="exp-org">AASTU</div>
+                <div class="exp-year">2025</div>
+              </div>
+              <div class="exp-role">Intern</div>
+              <div class="exp-meta">3 mos · Addis Ababa</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="Concept Hub Ethiopia">
+              <div class="exp-card-top">
+                <div class="exp-org">Concept Hub Ethiopia</div>
+                <div class="exp-year">2025</div>
+              </div>
+              <div class="exp-role">VIP Trainee, Media Literacy & Information Resilience</div>
+              <div class="exp-meta">3 mos · Remote</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
+            <div class="exp-card glass glass-sm" data-name="Entrepreneurship Development Institute Ethiopia">
+              <div class="exp-card-top">
+                <div class="exp-org">EDI Ethiopia</div>
+                <div class="exp-year">2025</div>
+              </div>
+              <div class="exp-role">2025 Bruh Enat Participant</div>
+              <div class="exp-meta">1 mo · Bishoftu</div>
+              <div class="exp-more">Full story <span>→ coming soon</span></div>
+            </div>
+
           </div>
         </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
-
-      <div class="track-item r d1" data-name="Information Network Security Agency">
-        <div class="track-head">
-          <div>
-            <div class="track-org">Information Network Security Agency</div>
-            <div class="track-role">4th Round Cyber Talent Participant</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2025</div>
-            <div class="track-sub">3 mos · Addis Ababa</div>
-          </div>
-        </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
-
-      <div class="track-item r d2" data-name="Born To Win Club, Mekelle University">
-        <div class="track-head">
-          <div>
-            <div class="track-org">Born To Win Club</div>
-            <div class="track-role">External Relations and Partnerships Lead</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2026</div>
-            <div class="track-sub">Present · Part-time</div>
-          </div>
-        </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
-
-      <div class="track-item r d1" data-name="Orbit Innovation Hub">
-        <div class="track-head">
-          <div>
-            <div class="track-org">Orbit Innovation Hub</div>
-            <div class="track-role">Cohort 6 Graduate</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2025</div>
-            <div class="track-sub">4 mos · Axum</div>
-          </div>
-        </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
-
-      <div class="track-item r d2" data-name="Addis Ababa Science and Technology University">
-        <div class="track-head">
-          <div>
-            <div class="track-org">AASTU</div>
-            <div class="track-role">Intern</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2025</div>
-            <div class="track-sub">3 mos · Addis Ababa</div>
-          </div>
-        </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
-
-      <div class="track-item r d1" data-name="Concept Hub Ethiopia">
-        <div class="track-head">
-          <div>
-            <div class="track-org">Concept Hub Ethiopia</div>
-            <div class="track-role">VIP Trainee, Media Literacy & Information Resilience</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2025</div>
-            <div class="track-sub">3 mos · Remote</div>
-          </div>
-        </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
-      </div>
-
-      <div class="track-item r d2" data-name="Entrepreneurship Development Institute Ethiopia">
-        <div class="track-head">
-          <div>
-            <div class="track-org">EDI Ethiopia</div>
-            <div class="track-role">2025 Bruh Enat Participant</div>
-          </div>
-          <div class="track-scale">
-            <div class="track-big">2025</div>
-            <div class="track-sub">1 mo · Bishoftu</div>
-          </div>
-        </div>
-        <div class="track-more">Full story <span>→ coming soon</span></div>
       </div>
     </div>
   </div>
@@ -942,7 +953,7 @@
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   (function loop(){ cur.style.left=mx+'px'; cur.style.top=my+'px'; rx+=(mx-rx)*.13; ry+=(my-ry)*.13; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a, button, .c-icon-card, .btn-gold, .btn-ghost, .track-item, .proj-card').forEach(el => {
+  document.querySelectorAll('a, button, .c-icon-card, .btn-gold, .btn-ghost, .exp-card, .exp-toggle, .proj-card').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
   });
@@ -1028,10 +1039,22 @@
     });
   }
 
+  // Where I've Worked: collapsible toggle
+  const expPanel = document.getElementById('exp-panel');
+  const expToggle = document.getElementById('exp-toggle');
+  expToggle.addEventListener('click', ()=>{
+    const isOpen = expPanel.getAttribute('data-open') === 'true';
+    expPanel.setAttribute('data-open', isOpen ? 'false' : 'true');
+    expToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    if(!isOpen){
+      setTimeout(()=> expPanel.scrollIntoView({behavior:'smooth', block:'start'}), 120);
+    }
+  });
+
   // Coming soon overlay
   const soonOverlay = document.getElementById('soon-overlay');
   const soonSub = document.getElementById('soon-sub');
-  document.querySelectorAll('.track-item, .proj-card').forEach(item=>{
+  document.querySelectorAll('.exp-card, .proj-card').forEach(item=>{
     item.addEventListener('click', ()=>{
       const name = item.dataset.name || '';
       soonSub.textContent = name ? `The full story on ${name} isn't written yet.` : "It isn't written yet.";
